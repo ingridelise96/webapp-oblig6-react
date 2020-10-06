@@ -1,0 +1,299 @@
+@import "var", "extend";
+
+*,
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $page-font-family;
+    color: $page-font-color;
+}
+
+/*------Top info/nav bar-------*/
+nav {
+    @extend %flex-row;
+    justify-content: space-between;
+    align-items: center;
+    height: 63px;
+    box-shadow: 0px 6px 10px $nav-shadow;
+    padding: 0 30px 0 30px;
+}
+
+#logo {
+    width: 52px;
+    height: 27px;
+
+    h1 {
+        font-weight: $extra-bold-text;
+        font-size: $nav-text-size;
+        letter-spacing: -1px;
+    }
+}
+
+#username {
+    width: 100px;
+    height: 27px;
+
+    h2 {
+        font-weight: $regular-weight-text;
+        font-size: $nav-text-size;
+    }
+}
+
+/*-------Main content--------*/
+.content {
+    @extend %flex-column;
+    margin: 0 auto 0 auto;
+    width: 68%;
+}
+
+/*------section for the + Todo button-----*/
+.newTodo {
+    width: $full-size;
+    padding: 77px 0px 70px 0px;
+}
+
+#newTodoBtn {
+    top: 140 px;
+    left: 221px;
+    height: 51px;
+    width: 183px;
+    background-color: white;
+    border: $regular-border $page-font-color;
+    font-size: 23px;
+
+    .iconStyle {
+        margin-right: 5px;
+    }
+}
+
+#newTodoBtn:hover {
+    background-color: $blue-contrast-hover;
+}
+
+/*------Section for the modal--------*/
+.modalOverlay {
+    /*kilde: https://www.w3schools.com/howto/howto_css_modals.asp*/
+    position: fixed;
+    z-index: 1;
+    padding-top: 195px;
+    padding-left: 38%;
+    left: 0;
+    top: 0;
+    width: $full-size;
+    height: $full-size;
+    background-color: $modal-background;
+}
+
+.modal {
+    box-shadow: 0px 1px 8px $modal-shadow;
+    border-radius: $radius-bigger;
+    left: 38%;
+    width: 24%;
+    min-height: 200px;
+    background-color: white;
+}
+
+.modalForm {
+    @extend %flex-column;
+    padding: 20px;
+
+    h3 {
+        font-size: $regular-text-size;
+        font-weight: $bold-text;
+        margin-bottom: 42px;
+    }
+}
+
+.iconClose {
+    align-self: flex-end;
+    width: 12px;
+}
+
+#createTodoBtn {
+    @extend %form-margin;
+}
+
+.textBox {
+    @extend %form-margin;
+    margin-bottom: 20px;
+
+    label {
+        font-size: 12px;
+        font-weight: $bold-text;
+    }
+
+    input[type="text"] {
+        width: $full-size;
+        border: $regular-border $textbox-border-color;
+        border-radius: $radius-small;
+        height: 40px;
+        padding-left: 3px;
+    }
+}
+
+#availChars {
+    font-size: 12px;
+}
+
+#createTodoBtn {
+    background-color: $blue-contrast-color;
+    color: white;
+    height: 32px;
+    border: none;
+    font-size: $small-title-size;
+    margin-bottom: 20px;
+}
+
+#createTodoBtn:hover {
+    background-color: $blue-contrast-hover;
+}
+
+/*-----Section for the todo cards------*/
+.todoCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 40px;
+    width: $full-size;
+    height: 187px;
+}
+
+.card {
+    position: relative;
+    padding: 27px 22px 24px 30px;
+    box-shadow: 0px 8px 16px $card-shadow;
+    border-radius: $radius-bigger;
+    max-width: 220px;
+
+    button {
+        position: absolute;
+        bottom: 24px;
+        color: white;
+        border: none;
+        border-radius: $radius-small;
+        padding: 4px 20px 4px 20px;
+        font-weight: bold;
+        font-size: $card-button-text-size;
+    }
+
+    p {
+        overflow-wrap: break-word;
+    }
+}
+
+.iconStyle {
+    font-size: 21px;
+    color: $icon-color;
+}
+
+.deleteTodo {
+    right: 116px;
+    background-color: $red-contrast-color;
+}
+
+.deleteTodo:hover {
+    background-color: $red-contrast-hover;
+}
+
+.completeTodo {
+    right: 22px;
+    background-color: $blue-contrast-color;
+}
+
+.completeTodo:hover {
+    background-color: $blue-contrast-hover;
+}
+
+.todoTitle {
+    font-size: $small-title-size;
+    font-weight: $bold-text;
+    margin-bottom: 7px;
+}
+
+.todoDescription {
+    font-size: $regular-text-size;
+    margin-bottom: 24px;
+}
+
+/*-------Section for completed todos-------*/
+.completedTodos {
+    width: $full-size;
+    height: 200px;
+    padding-top: 75px;
+}
+
+#completedTitle {
+    font-size: $small-title-size;
+    font-weight: $bold-text;
+}
+
+.todoSearchSection {
+    @extend %flex-row;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    float: right;
+    margin: 5px 5px 7px 0;
+    max-width: 50%;
+
+    label {
+        color: #909090;
+        font-size: $regular-text-size;
+        margin: $search-elements-margin;
+        min-width: 87px;
+    }
+
+    input[type="text"] {
+        @extend %search-elements;
+        max-width: 50%;
+        height: 1.2rem;
+        padding: 3px;
+        margin: $search-elements-margin;
+    }
+
+    button.searchCompleted,
+    button.resetSearch {
+        @extend %search-elements;
+        background-color: $tablehead-color;
+        padding: 3px 5px 3px 5px;
+        margin: $search-elements-margin;
+    }
+}
+
+button.searchCompleted:hover,
+button.resetSearch:hover {
+    background-color: $blue-contrast-hover;
+}
+
+#completedTable {
+    @extend %flex-column;
+    width: $full-size;
+
+    .tableHeader,
+    .tableRow {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr 1fr;
+        align-content: center;
+        padding: 6px 35px 6px 35px;
+        height: 25px;
+
+        p {
+            color: $tablerow-text-color;
+            font-size: $regular-text-size;
+        }
+
+        h3 {
+            font-weight: $bold-text;
+            font-size: $regular-text-size;
+        }
+    }
+
+    .tableHeader {
+        background-color: $tablehead-color;
+        text-align: left;
+    }
+
+    p#noMatchMsg {
+        margin-top: 15px;
+    }
+}
